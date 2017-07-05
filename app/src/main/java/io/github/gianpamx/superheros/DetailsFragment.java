@@ -1,26 +1,20 @@
 package io.github.gianpamx.superheros;
 
+import android.arch.lifecycle.LifecycleFragment;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import io.github.gianpamx.superheros.viewmodel.CharacterViewModel;
 
-public class DetailsFragment extends Fragment {
-    public static final String MARVEL_API = "https://gateway.marvel.com/v1/";
-    public static final String API_KEY = "f50abdda9be0a3da1346c57de0becc4d";
-    public static final String API_SECRET = "a25c48cd8c6010b5ee324b06f78d76e26879cb1f";
+public class DetailsFragment extends LifecycleFragment {
+    public static final String CHARACTER_ID = "1011334";
 
     private ImageView thumbnail;
     private TextView nameTextView;
@@ -33,41 +27,21 @@ public class DetailsFragment extends Fragment {
         thumbnail = view.findViewById(R.id.thumbnail);
         nameTextView = view.findViewById(R.id.name);
 
-        MarvelInterceptor marvelInterceptor = new MarvelInterceptor(API_KEY, API_SECRET);
-
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(marvelInterceptor)
-                .addInterceptor(loggingInterceptor)
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MARVEL_API)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        MarvelService service = retrofit.create(MarvelService.class);
-
-        Call<CharacterDataWrapper> call = service.getCharacter("1011334");
-        call.enqueue(new Callback<CharacterDataWrapper>() {
-            @Override
-            public void onResponse(Call<CharacterDataWrapper> call, Response<CharacterDataWrapper> response) {
-                if (response.isSuccessful()) {
-                    Character character = response.body().data.results.get(0);
-                    nameTextView.setText(character.name);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CharacterDataWrapper> call, Throwable t) {
-
-            }
-        });
-
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        CharacterViewModel characterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
+        characterViewModel.init(CHARACTER_ID);
+
+        characterViewModel.getCharacter().observe(this, new Observer<Character>() {
+            @Override
+            public void onChanged(@Nullable Character character) {
+                nameTextView.setText(character.name);
+            }
+        });
+    }
 }
