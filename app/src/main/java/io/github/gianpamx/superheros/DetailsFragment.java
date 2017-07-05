@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import io.github.gianpamx.superheros.data.CharacterRepository;
 import io.github.gianpamx.superheros.viewmodel.CharacterViewModel;
 
 public class DetailsFragment extends LifecycleFragment {
@@ -35,7 +36,7 @@ public class DetailsFragment extends LifecycleFragment {
         super.onActivityCreated(savedInstanceState);
 
         CharacterViewModel characterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
-        characterViewModel.init(CHARACTER_ID);
+        characterViewModel.init(CHARACTER_ID, new CharacterRepository());
 
         characterViewModel.getCharacter().observe(this, new Observer<Character>() {
             @Override
