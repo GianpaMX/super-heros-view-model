@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import io.github.gianpamx.superheros.data.CharacterRepository;
+import io.github.gianpamx.superheros.data.MarvelClient;
 import io.github.gianpamx.superheros.viewmodel.CharacterViewModel;
 
 public class DetailsFragment extends LifecycleFragment {
@@ -36,7 +37,10 @@ public class DetailsFragment extends LifecycleFragment {
         super.onActivityCreated(savedInstanceState);
 
         CharacterViewModel characterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
-        characterViewModel.init(CHARACTER_ID, new CharacterRepository());
+
+        MarvelClient marvelClient = new MarvelClient();
+        CharacterRepository characterRepository = new CharacterRepository(marvelClient.service);
+        characterViewModel.init(CHARACTER_ID, characterRepository);
 
         characterViewModel.getCharacter().observe(this, new Observer<Character>() {
             @Override
