@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros.viewmodel;
+package io.github.gianpamx.superheros.details;
 
 import android.arch.lifecycle.MutableLiveData;
 

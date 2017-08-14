@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros;
+package io.github.gianpamx.superheros.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

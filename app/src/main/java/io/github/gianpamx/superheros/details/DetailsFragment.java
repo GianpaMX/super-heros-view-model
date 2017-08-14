@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros;
+package io.github.gianpamx.superheros.details;
 
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import io.github.gianpamx.superheros.servicelocator.ServiceLocator;
-import io.github.gianpamx.superheros.viewmodel.CharacterLiveDataFactory;
-import io.github.gianpamx.superheros.viewmodel.CharacterViewModel;
+import io.github.gianpamx.superheros.data.model.Character;
+import io.github.gianpamx.superheros.R;
+import io.github.gianpamx.superheros.ServiceLocator;
 
 public class DetailsFragment extends LifecycleFragment {
     public static final String CHARACTER_ID = "1011334";

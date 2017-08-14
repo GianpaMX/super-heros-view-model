@@ -1,6 +1,6 @@
-package io.github.gianpamx.superheros.servicelocator;
+package io.github.gianpamx.superheros;
 
-import io.github.gianpamx.superheros.MarvelService;
+import io.github.gianpamx.superheros.data.MarvelService;
 import io.github.gianpamx.superheros.data.CharacterRepository;
 import io.github.gianpamx.superheros.data.MarvelClient;
 

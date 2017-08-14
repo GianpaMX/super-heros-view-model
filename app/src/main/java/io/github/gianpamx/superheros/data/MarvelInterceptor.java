@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros;
+package io.github.gianpamx.superheros.data;
 
 import java.io.IOException;
 import java.security.MessageDigest;

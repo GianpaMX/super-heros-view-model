@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros;
+package io.github.gianpamx.superheros.data.model;
 
 class Thumbnail {
     public String path;

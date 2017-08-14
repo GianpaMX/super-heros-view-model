@@ -1,8 +1,7 @@
 package io.github.gianpamx.superheros.data;
 
-import io.github.gianpamx.superheros.Character;
-import io.github.gianpamx.superheros.CharacterDataWrapper;
-import io.github.gianpamx.superheros.MarvelService;
+import io.github.gianpamx.superheros.data.model.Character;
+import io.github.gianpamx.superheros.data.model.CharacterDataWrapper;
 import retrofit2.Call;
 import retrofit2.Response;
 

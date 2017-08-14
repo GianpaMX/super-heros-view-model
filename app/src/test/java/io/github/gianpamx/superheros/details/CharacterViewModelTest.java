@@ -1,8 +1,7 @@
-package io.github.gianpamx.superheros.viewmodel;
+package io.github.gianpamx.superheros.details;
 
 import android.arch.lifecycle.MutableLiveData;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -10,8 +9,10 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import io.github.gianpamx.superheros.Character;
+import io.github.gianpamx.superheros.data.model.Character;
 import io.github.gianpamx.superheros.data.CharacterRepository;
+import io.github.gianpamx.superheros.details.CharacterViewModel;
+import io.github.gianpamx.superheros.details.LiveDataFactory;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;

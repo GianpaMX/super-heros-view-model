@@ -1,10 +1,10 @@
-package io.github.gianpamx.superheros.viewmodel;
+package io.github.gianpamx.superheros.details;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import io.github.gianpamx.superheros.Character;
+import io.github.gianpamx.superheros.data.model.Character;
 import io.github.gianpamx.superheros.data.CharacterRepository;
 
 public class CharacterViewModel extends ViewModel {

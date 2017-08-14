@@ -1,4 +1,4 @@
-package io.github.gianpamx.superheros;
+package io.github.gianpamx.superheros.data.model;
 
 import java.util.List;
 

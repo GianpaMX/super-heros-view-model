@@ -1,7 +1,5 @@
 package io.github.gianpamx.superheros.data;
 
-import io.github.gianpamx.superheros.MarvelInterceptor;
-import io.github.gianpamx.superheros.MarvelService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
