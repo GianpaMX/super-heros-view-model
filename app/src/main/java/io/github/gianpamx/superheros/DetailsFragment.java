@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import io.github.gianpamx.superheros.servicelocator.ServiceLocator;
+import io.github.gianpamx.superheros.viewmodel.CharacterLiveDataFactory;
 import io.github.gianpamx.superheros.viewmodel.CharacterViewModel;
 
 public class DetailsFragment extends LifecycleFragment {
@@ -37,9 +38,9 @@ public class DetailsFragment extends LifecycleFragment {
 
         CharacterViewModel characterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
 
-        characterViewModel.init(CHARACTER_ID, ServiceLocator.getInstance().getCharacterRepository());
+        characterViewModel.init(CHARACTER_ID, ServiceLocator.getInstance().getCharacterRepository(), new CharacterLiveDataFactory());
 
-        characterViewModel.getCharacter().observe(this, new Observer<Character>() {
+        characterViewModel.getLiveCharacter().observe(this, new Observer<Character>() {
             @Override
             public void onChanged(@Nullable Character character) {
                 nameTextView.setText(character.name);

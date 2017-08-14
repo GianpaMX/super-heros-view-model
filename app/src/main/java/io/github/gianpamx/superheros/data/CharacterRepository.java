@@ -1,13 +1,9 @@
 package io.github.gianpamx.superheros.data;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-
 import io.github.gianpamx.superheros.Character;
 import io.github.gianpamx.superheros.CharacterDataWrapper;
 import io.github.gianpamx.superheros.MarvelService;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CharacterRepository {
@@ -17,15 +13,13 @@ public class CharacterRepository {
         this.service = service;
     }
 
-    public LiveData<Character> findById(String characterId) {
-        final MutableLiveData<Character> character = new MutableLiveData<>();
-
+    public void findById(String characterId, final Callback callback) {
         Call<CharacterDataWrapper> call = service.getCharacter(characterId);
-        call.enqueue(new Callback<CharacterDataWrapper>() {
+        call.enqueue(new retrofit2.Callback<CharacterDataWrapper>() {
             @Override
             public void onResponse(Call<CharacterDataWrapper> call, Response<CharacterDataWrapper> response) {
                 if (response.isSuccessful()) {
-                    character.setValue(response.body().data.results.get(0));
+                    callback.onSuccess(response.body().data.results.get(0));
                 }
             }
 
@@ -34,7 +28,9 @@ public class CharacterRepository {
 
             }
         });
+    }
 
-        return character;
+    public interface Callback {
+        void onSuccess(Character character);
     }
 }
